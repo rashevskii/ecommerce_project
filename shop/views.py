@@ -5,5 +5,5 @@ def home(request):
     return render(request, 'shop/home.html')
 
 
-def about(request):
-    return render(request, 'shop/about.html')
+def product(request):
+    return render(request, 'shop/product.html')
