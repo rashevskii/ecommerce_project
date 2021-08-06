@@ -16,11 +16,10 @@
                     <a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle"
                        data-bs-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false" href="#">Categories</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a href="#" class="dropdown-item">Category1</a>
-                        <a href="#" class="dropdown-item">Category2</a>
-                        <a href="#" class="dropdown-item">Category3</a>
-                        <a href="#" class="dropdown-item">Category4</a>
-                        <a href="#" class="dropdown-item">Category5</a>
+                        <a href="{% url 'home' %}" class="dropdown-item">All products</a>
+                        {% for category in links %}
+                        <a href="{{ category.get_url }}" class="dropdown-item">{{ category.name }}</a>
+                        {% endfor %}
                     </div>
                 </li>
                 <li class="nav-item">

@@ -19,15 +19,17 @@
 
 <div class="container">
   <div class="row">
-    {% for i in 'aaaaaaaa' %}
+    {% for product in products %}
     <div class="col-9 mx-auto col-md-6 col-lg-3">
       <div class="card mb-5">
         <div class="p-4">
-          <img src="{% static 'images/teddy.png' %}" alt="Teddy" class="card-img-top">
+          <a href="{{ product.get_url }}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+          </a>
         </div>
         <div class="card-footer d-flex justify-content-between" style="background: transparent; border-color: transparent;">
-          <p class="font-weight-bold mb-0">Teddy</p>
-          <h5 class="text-info font-italic mb-0">$9.99</h5>
+          <p class="font-weight-bold mb-0">{{ product.name }}</p>
+          <h5 class="text-info font-italic mb-0">${{ product.price }}</h5>
         </div>
       </div>
     </div>
