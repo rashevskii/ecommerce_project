@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
         <a href="{% url 'home' %}" class="navbar-brand text-success">
@@ -29,6 +30,33 @@
                     <a class="nav-link text-light text-uppercase font-weight-bold px-3"
                        href="#">About</a>
                 </li>
+                {% if request.user.is_authenticated and request.user.first_name %}
+                <li class="nav-item">
+                    <span style="display: flex;" class="nav-link text-light text-uppercase font-weight-bold px-3">
+                        Welcome, {{ request.user.first_name }}!
+                        <span class="material-icons">account_circle</span>
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <a style="display: flex;" class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'logout' %}">
+                        Sign out
+                        <span class="material-icons">exit_to_app</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a style="display: flex;" class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'signup' %}">
+                        Sign up
+                        <span class="material-icons">add</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a style="display: flex;" class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'login' %}">
+                        Log in
+                        <span class="material-icons">login</span>
+                    </a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'cart_detail' %}">
                         <span class="material-icons">shopping_cart</span>

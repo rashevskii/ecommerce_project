@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User, Group
 from django.core.exceptions import ObjectDoesNotExist
@@ -30,7 +30,7 @@ def product(request, category_slug, product_slug):
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
-        cart = request.session.creat()
+        cart = request.session.create()
     return cart
 
 
@@ -102,7 +102,7 @@ def signUpView(request):
 
 def loginView(request):
     if request.method == "POST":
-        form = AuthenticationForm(request.POST)
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
@@ -114,4 +114,9 @@ def loginView(request):
                 return redirect('signup')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'shop/login.html', {'form': form})
+
+
+def logoutView(request):
+    logout(request)
+    return redirect('login')
