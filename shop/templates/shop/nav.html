@@ -29,12 +29,22 @@
                     <a class="nav-link text-light text-uppercase font-weight-bold px-3"
                        href="#">About</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'cart_detail' %}">
+                        <span class="material-icons">shopping_cart</span>
+                        {% if item_count > 0 %}
+                        ({{ item_count }})
+                        {% endif %}
+                    </a>
+                </li>
             </ul>
             <form action="" class="form-inline">
                 <div class="input-group">
                     <input class="form-control bg-white" type="text" placeholder="Search">
-                    <div class="">
-                        <button class="btn btn-success"><span class="material-icons md-24">search</span></button>
+                    <div>
+                        <button style="padding-top: .2rem; padding-bottom: 0.2rem;" class="btn btn-success">
+                            <span class="material-icons md-24">search</span>
+                        </button>
                     </div>
                 </div>
             </form>
